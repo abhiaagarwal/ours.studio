@@ -1,7 +1,11 @@
 use std::net::SocketAddr;
 
 use askama_axum::Template;
-use axum::{response::Html, routing::get, Router};
+use axum::{
+    response::{Html, IntoResponse},
+    routing::get,
+    Router,
+};
 use color_eyre::Result;
 use tower_http::services::ServeDir;
 use tracing::info;
@@ -21,10 +25,11 @@ async fn main() -> Result<()> {
                 .unwrap_or_else(|_| "ours-studio=info".into()),
         )
         .with(tracing_subscriber::fmt::layer())
-        .init();
+        .try_init()?;
 
     let app = Router::new()
         .route("/", get(index))
+        .route("/health", get(health))
         .nest_service("/assets", ServeDir::new("assets"));
     let listener = SocketAddr::from(([127, 0, 0, 1], 3000));
 
@@ -35,6 +40,10 @@ async fn main() -> Result<()> {
         .await?;
 
     Ok(())
+}
+
+async fn health() -> impl IntoResponse {
+    "healthy :)".into_response()
 }
 
 async fn index() -> IndexTemplate {

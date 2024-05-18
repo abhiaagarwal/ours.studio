@@ -13,6 +13,6 @@
     },
     "scripts": {
         "fmt": "cargo +nightly fmt && prettier --write .",
-        "tailwind": "tailwindcss -i ./src/tailwind.css -o ./assets/styles.css"
+        "tailwind": "tailwindcss -i ./src/styles/tailwind.css -o ./assets/styles.css"
     }
 }
