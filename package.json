@@ -1,0 +1,18 @@
+{
+    "name": "ours.studio",
+    "type": "module",
+    "devDependencies": {
+        "@types/bun": "latest",
+        "prettier": "^3.2.5",
+        "prettier-plugin-jinja-template": "^1.4.0",
+        "prettier-plugin-tailwindcss": "^0.5.14",
+        "tailwindcss": "^3.4.3"
+    },
+    "peerDependencies": {
+        "typescript": "^5.0.0"
+    },
+    "scripts": {
+        "fmt": "cargo +nightly fmt && prettier --write .",
+        "tailwind": "tailwindcss -i ./src/tailwind.css -o ./assets/styles.css"
+    }
+}

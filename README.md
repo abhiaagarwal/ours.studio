@@ -1,2 +1,3 @@
 # ours.studio
-Collaborative music charts for you and your friends 
+
+Collaborative music charts for you and your friends
